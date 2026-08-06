@@ -1,8 +1,28 @@
-A forma mais segura de desenvolver uma aplicação é usando controle de versionamento, para isso existe o Git;
+# Controle de Versionamento com Git e GitHub
 
-Mas a melhor forma de desenvolver uma aplicação em equipe é usando um repositório hospedado na internet, ou na rede local da sua instituição.
-Para isso existe o GitHub, ou o GitLab, que são formas eficientes de centralizar o versionamento quando se está trabalhando em equipe.
-Os principais conceitos são: 'origin', que é o nome padrão do repositório remoto, 'staging area' que é o espaço intermediário onde estão os arquivos selecionados para entrarem na próxima versão
-'git directory' é a pasta onde o git automaticamente salva as versões e comentários, 'commit' é o registro de alterações salvas no projeto, 'branch' é uma linha de desenvolvimento independente do projeto,
-'merge' é o ato de unir duas branches, e 'push' e 'pull' são comandos para enviar ou baixar alterações; 
-Alguns comandos mais usados são: git clone, git add, git commit, git push;
+A forma mais segura de desenvolver uma aplicação é utilizando **controle de versionamento**. Para isso, existe o **Git**, um sistema que registra o histórico de alterações do projeto, permitindo acompanhar mudanças, restaurar versões anteriores e trabalhar de forma organizada.
+
+Quando o desenvolvimento é realizado em equipe, é recomendado utilizar um **repositório remoto**, hospedado na internet ou na rede da instituição. Plataformas como **GitHub** e **GitLab** centralizam o versionamento, facilitando a colaboração entre desenvolvedores.
+
+## Principais conceitos
+
+- **Origin**: nome padrão atribuído ao repositório remoto.
+- **Staging Area**: área intermediária onde ficam os arquivos preparados para o próximo commit.
+- **Git Directory (`.git`)**: diretório oculto onde o Git armazena o histórico de versões e demais informações do repositório.
+- **Commit**: registro permanente de um conjunto de alterações no projeto.
+- **Branch**: linha de desenvolvimento independente, utilizada para criar funcionalidades ou corrigir problemas sem afetar a versão principal.
+- **Merge**: processo de unir as alterações de uma branch em outra.
+- **Push**: envia as alterações do repositório local para o repositório remoto.
+- **Pull**: baixa e integra as alterações do repositório remoto ao repositório local.
+
+## Comandos básicos
+
+```bash
+git clone <url>   # Clona um repositório remoto
+git add .         # Adiciona arquivos à Staging Area
+git commit -m ""  # Registra as alterações no histórico
+git push          # Envia commits para o repositório remoto
+git pull          # Atualiza o repositório local com as alterações remotas
+```
+
+O uso de Git em conjunto com plataformas como GitHub ou GitLab torna o desenvolvimento colaborativo mais seguro, organizado e eficiente, permitindo que vários desenvolvedores trabalhem simultaneamente no mesmo projeto.
