@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício de Vídeo e Áudio no HTML</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; line-height: 1.6; margin: 0; padding: 20px; }
+    
+        header {
+            background-color: #0056b3;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #0056b3;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form p {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: calc(100% - 22px); /* Ajusta para padding e borda */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box; /* Inclui padding e borda na largura total */
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        button[type="submit"],
+        button[type="reset"] {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            color: white;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"] {
+            background-color: #28a745; /* Verde */
+        }
+
+        button[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        button[type="reset"] {
+            background-color: #dc3545; /* Vermelho */
+        }
+
+        button[type="reset"]:hover {
+            background-color: #c82333;
+        }
+
+        audio,
+        video {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #eee;
+            color: #666;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Cabeçalho da página -->
+    </header>
+
+    <main>
+        <!-- Conteúdo principal da página -->
+        <h2>Boas-Vindas!</h2>
+        <audio controls="" preload="metadata">
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                Seu navegador não suporta o elemento de áudio.
+        </audio>
+        <h2>Nosso Vídeo Institucional</h2>
+        <video controls poster="https://via.placeholder.com/640x360.png?text=Video+Institucional" width="640" height="360">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            Seu navegador não suporta o elemento de vídeo.
+        </video>
+
+        <h2>Formulário de Contato</h2>
+        <form action="#" method="post">
+            <p>
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+            </p>
+            <p>
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com" required>
+            </p>
+            <p>
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" pattern="^\(\d{2}\)\s\d{4,5}-\d{4}$">
+            </p>
+            <p>
+                <label for="assunto">Assunto:</label>
+                <select id="assunto" name="assunto" required>
+                    <option value="" disabled selected>Selecione um assunto</option>
+                    <option value="geral">Informações Gerais</option>
+                    <option value="suporte">Suporte Técnico</option>
+                    <option value="parceria">Parceria</option>
+                </select>
+            </p>
+            <p>
+                <label for="mensagem">Mensagem:</label>
+                <textarea id="mensagem" name="mensagem" rows="5" placeholder="Digite sua mensagem aqui..."></textarea>
+            </p>
+            <p>
+                <button type="submit">Enviar Mensagem</button>
+                <button type="reset">Limpar Formulário</button>
+            </p>
+        </form>
+    </main>
+
+    <footer>
+        <!-- Rodapé da página -->
+    </footer>
+
+    <script >
+        const telefoneInput = document.getElementById('telefone');
+
+        telefoneInput.addEventListener('input', (e) => {
+            let valor = e.target.value.replace(/\D/g, ''); // remove tudo que não é dígito
+            valor = valor.slice(0, 11); // limita a 11 dígitos (DDD + 9 dígitos)
+
+            if (valor.length > 6) {
+            valor = valor.replace(/^(\d{2})(\d{4,5})(\d{0,4})/, '($1) $2-$3');
+            } else if (valor.length > 2) {
+            valor = valor.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+            } else if (valor.length > 0) {
+            valor = valor.replace(/^(\d{0,2})/, '($1');
+            }
+
+            e.target.value = valor;
+        });
+    </script>
+</body>
+</html>
