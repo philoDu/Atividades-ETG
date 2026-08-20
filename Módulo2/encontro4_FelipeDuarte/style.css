@@ -1,0 +1,362 @@
+/* ==========================================================================
+   PORTFÓLIO PESSOAL - CSS BASE
+   Exercício Prático: CSS3 e Seletores
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap');
+
+/* ==========================================================================
+   RESET E CONFIGURAÇÕES BÁSICAS
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #eef1f4;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ==========================================================================
+   VARIÁVEIS CSS (CUSTOM PROPERTIES)
+   ========================================================================== */
+
+:root {
+    --cor-primaria: #3498db;
+    --cor-secundaria: #2c3e50;
+    --cor-destaque: #e74c3c;
+    --cor-sucesso: #27ae60;
+    --cor-fundo-claro: #f8f9fa;
+    --cor-fundo-escuro: #2c3e50;
+    --cor-texto: #333333;
+    --cor-texto-claro: #ffffff;
+
+    --espacamento-pequeno: 10px;
+    --espacamento-medio: 20px;
+    --espacamento-grande: 40px;
+    --espacamento-extra: 60px;
+
+    --sombra-suave: 0 2px 10px rgba(0,0,0,0.1);
+    --sombra-media: 0 5px 20px rgba(0,0,0,0.15);
+
+    --transicao-rapida: 0.2s ease;
+    --transicao-normal: 0.3s ease;
+    --transicao-lenta: 0.5s ease;
+}
+
+/* ==========================================================================
+   ESTILOS BASE PARA ELEMENTOS HTML
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+#sobre p {
+    text-align: justify;
+}
+
+a {
+    color: var(--cor-primaria);
+    text-decoration: none;
+    transition: var(--transicao-normal);
+}
+
+a:hover {
+    color: var(--cor-destaque);
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--cor-primaria);
+    outline-offset: 2px;
+}
+
+ul, ol {
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   BARRA DE PROGRESSO DE SCROLL
+   ========================================================================== */
+
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 100%;
+    background-color: var(--cor-primaria);
+    transform-origin: 0 50%;
+    transform: scaleX(0);
+    animation: grow-progress linear;
+    animation-timeline: scroll();
+    z-index: 999;
+}
+
+@keyframes grow-progress {
+    to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .progress-bar {
+        animation: none;
+    }
+}
+
+/* ==========================================================================
+   SEÇÃO: CABEÇALHO
+   ========================================================================== */
+
+#header {
+    background: var(--cor-secundaria);
+    background: linear-gradient(135deg, var(--cor-secundaria) 0%, var(--cor-primaria) 100%);
+    color: whitesmoke;
+    padding: 60px 0;
+    text-align: center;
+}
+
+#header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+#header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid whitesmoke;
+    width: 0;
+    animation:
+        typewriter 3s steps(29, end) forwards,
+        blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 29ch; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: whitesmoke; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #header p {
+        animation: none;
+        width: 29ch;
+        border-right: none;
+    }
+}
+
+/* ==========================================================================
+   SEÇÃO: NAVEGAÇÃO
+   ========================================================================== */
+
+.navigation {
+    background-color: #34495e;
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navigation ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 4em;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation a {
+    color: #ecf0f1;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.navigation a:hover {
+    color: var(--cor-primaria);
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 4px;
+}
+
+/* ==========================================================================
+   SEÇÃO: CONTEÚDO PRINCIPAL
+   ========================================================================== */
+
+.section {
+    padding: 60px 0;
+    margin-bottom: 0;
+}
+
+.section:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.section .container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: var(--sombra-suave);
+    padding: 40px;
+}
+
+.section h2 {
+    font-size: 2em;
+    color: var(--cor-secundaria);
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.section h2::after {
+    content: "";
+    display: block;
+    width: 70%;
+    height: 2px;
+    background-color: var(--cor-primaria);
+    margin: 10px auto 0;
+}
+
+/* ==========================================================================
+   SEÇÃO: HABILIDADES
+   ========================================================================== */
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.skill-card {
+    background-color: whitesmoke;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.skill-card::before {
+    content: "⎆";
+    display: block;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+/* ==========================================================================
+   SEÇÃO: RODAPÉ
+   ========================================================================== */
+
+#footer {
+    background-color: var(--cor-secundaria);
+    color: whitesmoke;
+    padding: 40px 0;
+    text-align: center;
+}
+
+#footer a {
+    color: var(--cor-primaria);
+    transition: color 0.3s ease;
+}
+
+#footer a:hover {
+    color: #5dade2;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    #header h1 {
+        font-size: 2.2rem;
+    }
+
+    .navigation ul {
+        flex-wrap: wrap;
+        gap: 1.5em;
+    }
+
+    .section .container {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    #header {
+        padding: 40px 0;
+    }
+
+    #header h1 {
+        font-size: 1.8rem;
+    }
+
+    .navigation ul {
+        gap: 1em;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   UTILITÁRIOS
+   ========================================================================== */
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
