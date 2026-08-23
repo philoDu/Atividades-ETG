@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdminDash - Dashboard Responsivo</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <!-- Ícones do Font Awesome (CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Container Principal do Dashboard -->
+    <div class="dashboard">
+        
+        <!-- Header/Cabeçalho -->
+        <header class="header">
+            <div class="header-brand">
+                <i class="fas fa-chart-line"></i>
+                <span>AdminDash</span>
+            </div>
+            
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="#" class="nav-link"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="#" class="nav-link"><i class="fas fa-users"></i> Usuários</a></li>
+                    <li><a href="#" class="nav-link"><i class="fas fa-shopping-cart"></i> Vendas</a></li>
+                    <li><a href="#" class="nav-link"><i class="fas fa-cog"></i> Configurações</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-user">
+                <span>Bem-vindo, Admin</span>
+                <div class="user-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Área Principal -->
+        <main class="main">
+            
+            <!-- Sidebar/Barra Lateral -->
+            <aside class="sidebar">
+                <h3 class="sidebar-title">Menu Principal</h3>
+                <ul class="sidebar-menu">
+                    <li><a href="#" class="sidebar-link active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="#" class="sidebar-link"><i class="fas fa-chart-bar"></i> Relatórios</a></li>
+                    <li><a href="#" class="sidebar-link"><i class="fas fa-users"></i> Usuários</a></li>
+                    <li><a href="#" class="sidebar-link"><i class="fas fa-shopping-bag"></i> Produtos</a></li>
+                    <li><a href="#" class="sidebar-link"><i class="fas fa-credit-card"></i> Vendas</a></li>
+                    <li><a href="#" class="sidebar-link"><i class="fas fa-envelope"></i> Mensagens</a></li>
+                    <li><a href="#" class="sidebar-link"><i class="fas fa-calendar"></i> Agenda</a></li>
+                    <li><a href="#" class="sidebar-link"><i class="fas fa-cog"></i> Configurações</a></li>
+                </ul>
+            </aside>
+
+            <!-- Área de Conteúdo -->
+            <section class="content">
+                
+                <!-- Seção de Estatísticas -->
+                <div class="stats-section">
+                    <h2>Estatísticas Gerais</h2>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>1,234</h3>
+                                <p>Usuários Ativos</p>
+                                <small>+12% este mês</small>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>567</h3>
+                                <p>Vendas Hoje</p>
+                                <small>+8% desde ontem</small>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>R$ 45.678</h3>
+                                <p>Receita Mensal</p>
+                                <small>+15% este mês</small>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>89%</h3>
+                                <p>Taxa de Conversão</p>
+                                <small>+3% esta semana</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção de Gráficos -->
+                <div class="charts-section">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Vendas por Mês</h3>
+                            <button class="btn-secondary">Ver Detalhes</button>
+                        </div>
+                        <div class="chart-content">
+                            <p>Gráfico de vendas seria exibido aqui</p>
+                            <i class="fas fa-chart-area fa-3x"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Usuários por Região</h3>
+                            <button class="btn-secondary">Exportar</button>
+                        </div>
+                        <div class="chart-content">
+                            <p>Mapa de usuários seria exibido aqui</p>
+                            <i class="fas fa-map fa-3x"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção de Tabela -->
+                <div class="table-section">
+                    <div class="table-card">
+                        <div class="table-header">
+                            <h3>Últimas Transações</h3>
+                            <button class="btn-primary">Nova Transação</button>
+                        </div>
+                        <div class="table-content">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Cliente</th>
+                                        <th>Produto</th>
+                                        <th>Valor</th>
+                                        <th>Status</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#001</td>
+                                        <td>João Silva</td>
+                                        <td>Notebook Dell</td>
+                                        <td>R$ 2.500,00</td>
+                                        <td><span class="status success">Concluído</span></td>
+                                        <td>
+                                            <button class="btn-sm">Ver</button>
+                                            <button class="btn-sm">Editar</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#002</td>
+                                        <td>Maria Santos</td>
+                                        <td>Mouse Gamer</td>
+                                        <td>R$ 150,00</td>
+                                        <td><span class="status pending">Pendente</span></td>
+                                        <td>
+                                            <button class="btn-sm">Ver</button>
+                                            <button class="btn-sm">Editar</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#003</td>
+                                        <td>Pedro Costa</td>
+                                        <td>Teclado Mecânico</td>
+                                        <td>R$ 300,00</td>
+                                        <td><span class="status success">Concluído</span></td>
+                                        <td>
+                                            <button class="btn-sm">Ver</button>
+                                            <button class="btn-sm">Editar</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+</body>
+</html>
+
