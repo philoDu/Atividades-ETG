@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechPhone Pro - Produto Animado</title>
+    <link rel="stylesheet" href="produto-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-spinner"></div>
+        <p>Carregando...</p>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-mobile-alt"></i>
+                <span>TechPhone</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Início</a></li>
+                <li><a href="#features" class="nav-link">Recursos</a></li>
+                <li><a href="#specs" class="nav-link">Especificações</a></li>
+                <li><a href="#contact" class="nav-link">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">TechPhone Pro</h1>
+                <p class="hero-subtitle">O futuro em suas mãos</p>
+                <p class="hero-description">
+                    Experimente a tecnologia mais avançada com design elegante, 
+                    performance excepcional e recursos inovadores que vão transformar 
+                    sua experiência mobile.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" id="buy-btn">
+                        <span class="btn-text">Comprar Agora</span>
+                        <div class="btn-loading" style="display: none;">
+                            <i class="fas fa-spinner"></i>
+                        </div>
+                    </button>
+                    <button class="btn btn-secondary">Saiba Mais</button>
+                </div>
+                <div class="hero-price">
+                    <span class="price-label">A partir de</span>
+                    <span class="price-value">R$ 2.999</span>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/produto.jpg" alt="TechPhone Pro" class="product-image">
+                <div class="floating-elements">
+                    <div class="floating-icon floating-icon-1">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <div class="floating-icon floating-icon-2">
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                    <div class="floating-icon floating-icon-3">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Recursos Incríveis</h2>
+            <p class="section-subtitle">Descubra o que torna o TechPhone Pro único</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="card-image">
+                        <img src="images/feature-1.jpg" alt="Câmera Profissional">
+                        <div class="card-overlay">
+                            <i class="fas fa-camera feature-icon"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Câmera Profissional</h3>
+                        <p>Sistema triplo de câmeras com IA avançada para fotos perfeitas em qualquer situação.</p>
+                        <div class="card-specs">
+                            <span class="spec">108MP Principal</span>
+                            <span class="spec">Ultra Wide</span>
+                            <span class="spec">Macro</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="card-image">
+                        <img src="images/feature-2.jpg" alt="Performance Extrema">
+                        <div class="card-overlay">
+                            <i class="fas fa-microchip feature-icon"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Performance Extrema</h3>
+                        <p>Processador de última geração com 12GB de RAM para multitarefas sem limites.</p>
+                        <div class="card-specs">
+                            <span class="spec">Snapdragon 8 Gen 3</span>
+                            <span class="spec">12GB RAM</span>
+                            <span class="spec">256GB Storage</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="card-image">
+                        <img src="images/feature-3.jpg" alt="Bateria Duradoura">
+                        <div class="card-overlay">
+                            <i class="fas fa-battery-full feature-icon"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Bateria Duradoura</h3>
+                        <p>5000mAh com carregamento rápido de 120W. Um dia inteiro de uso intenso.</p>
+                        <div class="card-specs">
+                            <span class="spec">5000mAh</span>
+                            <span class="spec">120W Fast Charge</span>
+                            <span class="spec">Wireless 50W</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specifications Section -->
+    <section id="specs" class="specifications">
+        <div class="container">
+            <h2 class="section-title">Especificações Técnicas</h2>
+            <div class="specs-grid">
+                <div class="spec-category">
+                    <h3>Display</h3>
+                    <ul>
+                        <li>6.8" AMOLED 120Hz</li>
+                        <li>Resolução 3200x1440</li>
+                        <li>HDR10+ Certificado</li>
+                        <li>Gorilla Glass Victus</li>
+                    </ul>
+                </div>
+                <div class="spec-category">
+                    <h3>Câmera</h3>
+                    <ul>
+                        <li>Principal 108MP f/1.8</li>
+                        <li>Ultra Wide 12MP f/2.2</li>
+                        <li>Macro 5MP f/2.4</li>
+                        <li>Frontal 32MP f/2.0</li>
+                    </ul>
+                </div>
+                <div class="spec-category">
+                    <h3>Performance</h3>
+                    <ul>
+                        <li>Snapdragon 8 Gen 3</li>
+                        <li>12GB LPDDR5X RAM</li>
+                        <li>256GB UFS 4.0</li>
+                        <li>Adreno 750 GPU</li>
+                    </ul>
+                </div>
+                <div class="spec-category">
+                    <h3>Conectividade</h3>
+                    <ul>
+                        <li>5G Sub-6 e mmWave</li>
+                        <li>Wi-Fi 7 (802.11be)</li>
+                        <li>Bluetooth 5.4</li>
+                        <li>USB-C 3.2</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+            <p class="section-subtitle">Tire suas dúvidas ou faça seu pedido</p>
+            
+            <form class="contact-form" id="contact-form">
+                <div class="form-group">
+                    <label for="name">Nome Completo</label>
+                    <input type="text" id="name" name="name" required>
+                    <div class="input-focus-line"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="input-focus-line"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Telefone</label>
+                    <input type="tel" id="phone" name="phone">
+                    <div class="input-focus-line"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Mensagem</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                    <div class="input-focus-line"></div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-submit">
+                    <span class="btn-text">Enviar Mensagem</span>
+                    <div class="btn-loading" style="display: none;">
+                        <i class="fas fa-spinner"></i>
+                    </div>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>TechPhone</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Política de Privacidade</a>
+                    <a href="#" class="footer-link">Termos de Uso</a>
+                    <a href="#" class="footer-link">Suporte</a>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TechPhone. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress">
+        <div class="scroll-progress-bar"></div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
