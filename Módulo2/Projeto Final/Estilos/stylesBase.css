@@ -898,3 +898,57 @@ input:invalid[data-touched="true"],
   max-width: 42rem;
   margin-bottom: var(--space-xl);
 }
+
+/* ==========================================================================
+   Notificações (toast)
+   ========================================================================== */
+
+.toast-container {
+  position: fixed;
+  top: 4.5rem;
+  right: var(--space-sm);
+  left: var(--space-sm);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  pointer-events: none;
+}
+
+@media (min-width: 40rem) {
+  .toast-container {
+    left: auto;
+    width: min(22rem, 100%);
+  }
+}
+
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  font-weight: 600;
+  font-size: 0.925rem;
+  opacity: 0;
+  transform: translateY(-0.5rem);
+  transition: opacity var(--transition-base), transform var(--transition-base);
+  border: 1px solid currentColor;
+}
+
+.toast[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast-success {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.toast-error {
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger);
+}

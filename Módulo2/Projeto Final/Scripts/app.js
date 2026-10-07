@@ -7,6 +7,7 @@
 const STORAGE_KEYS = {
   tarefas: "taskflow.tarefas",
   usuario: "taskflow.usuarioNome",
+  flash: "taskflow.flash",
 };
 
 const TAREFAS_EXEMPLO = [
@@ -72,7 +73,12 @@ function lerTarefas() {
 }
 
 function salvarTarefas(lista) {
-  localStorage.setItem(STORAGE_KEYS.tarefas, JSON.stringify(lista));
+  try {
+    localStorage.setItem(STORAGE_KEYS.tarefas, JSON.stringify(lista));
+    return true;
+  } catch (erro) {
+    return false;
+  }
 }
 
 function buscarTarefaPorId(id) {
@@ -105,6 +111,62 @@ function formatarData(isoDate) {
 const LABELS_PRIORIDADE = { baixa: "Baixa", media: "Média", alta: "Alta" };
 const LABELS_STATUS = { pendente: "Pendente", andamento: "Em andamento", concluida: "Concluída" };
 
+/* ---------------- Notificações (toast) ---------------- */
+
+function obterContainerNotificacoes() {
+  let container = document.getElementById("toastContainer");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "toastContainer";
+    container.className = "toast-container";
+    container.setAttribute("aria-live", "polite");
+    container.setAttribute("aria-atomic", "true");
+    document.body.appendChild(container);
+  }
+  return container;
+}
+
+function mostrarNotificacao(mensagem, tipo = "success") {
+  const container = obterContainerNotificacoes();
+  const toast = document.createElement("div");
+  toast.className = `toast toast-${tipo}`;
+  toast.setAttribute("role", tipo === "error" ? "alert" : "status");
+  toast.textContent = mensagem;
+  container.appendChild(toast);
+
+  requestAnimationFrame(() => toast.setAttribute("data-visible", "true"));
+
+  setTimeout(() => {
+    toast.setAttribute("data-visible", "false");
+    toast.addEventListener("transitionend", () => toast.remove(), { once: true });
+  }, 3500);
+}
+
+function definirNotificacaoFlash(mensagem, tipo = "success") {
+  try {
+    sessionStorage.setItem(STORAGE_KEYS.flash, JSON.stringify({ mensagem, tipo }));
+  } catch (erro) {
+    /* sessionStorage indisponível: a notificação não sobrevive ao redirecionamento */
+  }
+}
+
+function exibirNotificacaoFlashPendente() {
+  let bruto;
+  try {
+    bruto = sessionStorage.getItem(STORAGE_KEYS.flash);
+    if (bruto) sessionStorage.removeItem(STORAGE_KEYS.flash);
+  } catch (erro) {
+    return;
+  }
+  if (!bruto) return;
+  try {
+    const { mensagem, tipo } = JSON.parse(bruto);
+    mostrarNotificacao(mensagem, tipo);
+  } catch (erro) {
+    /* flash corrompido: ignora */
+  }
+}
+
 /* ---------------- Cabeçalho: menu, saudação e saída ---------------- */
 
 function iniciarNavegacao() {
@@ -134,8 +196,20 @@ function iniciarNavegacao() {
 
 /* ---------------- Validação simples de formulário ---------------- */
 
+function aplicarValidacaoMinlength(campo) {
+  // Alguns navegadores não aplicam o constraint nativo de minlength em <textarea>;
+  // reforça a regra manualmente via Constraint Validation API para funcionar em todos.
+  const minimo = campo.minLength;
+  if (minimo > 0 && campo.value.length > 0 && campo.value.length < minimo) {
+    campo.setCustomValidity(`Deve ter pelo menos ${minimo} caracteres.`);
+  } else {
+    campo.setCustomValidity("");
+  }
+}
+
 function marcarCampoComoTocado(campo) {
   campo.setAttribute("data-touched", "true");
+  aplicarValidacaoMinlength(campo);
   const wrapper = campo.closest(".field");
   if (wrapper) {
     wrapper.classList.toggle("field--error", !campo.checkValidity());
@@ -285,7 +359,13 @@ function iniciarPaginaDashboard() {
     const id = botao.getAttribute("data-excluir");
     const confirmar = window.confirm("Tem certeza que deseja excluir esta tarefa?");
     if (!confirmar) return;
-    salvarTarefas(lerTarefas().filter((t) => t.id !== id));
+
+    const sucesso = salvarTarefas(lerTarefas().filter((t) => t.id !== id));
+    if (!sucesso) {
+      mostrarNotificacao("Não foi possível executar a ação.", "error");
+      return;
+    }
+    mostrarNotificacao("Tarefa excluída.", "success");
     renderizar();
   });
 
@@ -329,7 +409,13 @@ function iniciarPaginaDetalhes() {
     btnExcluir.addEventListener("click", () => {
       const confirmar = window.confirm("Tem certeza que deseja excluir esta tarefa?");
       if (!confirmar) return;
-      salvarTarefas(lerTarefas().filter((t) => t.id !== id));
+
+      const sucesso = salvarTarefas(lerTarefas().filter((t) => t.id !== id));
+      if (!sucesso) {
+        mostrarNotificacao("Não foi possível executar a ação.", "error");
+        return;
+      }
+      definirNotificacaoFlash("Tarefa excluída.", "success");
       window.location.href = "dashboardTarefas.html";
     });
   }
@@ -356,9 +442,17 @@ function iniciarPaginaCriar() {
       categoria: form.categoria.value.trim() || "Geral",
     };
 
-    salvarTarefas([novaTarefa, ...lerTarefas()]);
+    const sucesso = salvarTarefas([novaTarefa, ...lerTarefas()]);
+    if (!sucesso) {
+      statusEl.textContent = "Não foi possível executar a ação.";
+      statusEl.className = "form-status form-status--error";
+      mostrarNotificacao("Não foi possível executar a ação.", "error");
+      return;
+    }
+
     statusEl.textContent = "Tarefa criada com sucesso! Redirecionando para o dashboard...";
     statusEl.className = "form-status form-status--success";
+    definirNotificacaoFlash("Tarefa criada.", "success");
     setTimeout(() => {
       window.location.href = "dashboardTarefas.html";
     }, 600);
@@ -407,10 +501,18 @@ function iniciarPaginaEditar() {
     } else {
       tarefas.unshift(tarefaAtualizada);
     }
-    salvarTarefas(tarefas);
+
+    const sucesso = salvarTarefas(tarefas);
+    if (!sucesso) {
+      statusEl.textContent = "Não foi possível executar a ação.";
+      statusEl.className = "form-status form-status--error";
+      mostrarNotificacao("Não foi possível executar a ação.", "error");
+      return;
+    }
 
     statusEl.textContent = "Alterações salvas com sucesso! Redirecionando...";
     statusEl.className = "form-status form-status--success";
+    definirNotificacaoFlash("Tarefa alterada.", "success");
     setTimeout(() => {
       window.location.href = `detalhesTarefas.html?id=${idAtual}`;
     }, 600);
@@ -420,6 +522,7 @@ function iniciarPaginaEditar() {
 /* ---------------- Inicialização ---------------- */
 
 document.addEventListener("DOMContentLoaded", () => {
+  exibirNotificacaoFlashPendente();
   iniciarNavegacao();
   iniciarPaginaLogin();
   iniciarPaginaCadastro();
